@@ -1,4 +1,4 @@
-# infrastructure-rke2-aws-terraform
+# infrastructure-rke2-aws-terraform-singlenode
 
 Terraform script designed to quickly stand up a single node RKE2 cluster.
 
