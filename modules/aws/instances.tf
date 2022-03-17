@@ -78,9 +78,9 @@ resource "aws_instance" "init_server" {
 #####################
 
 resource "aws_elb" "rke2_cp_elb" {
-  name = "rke2-cp-elb-${random_string.random_append.result}"
+  name = "rke2-singlenode-cp-elb-${random_string.random_append.result}"
 
-  subnets = [aws_subnet.rke2_public_subnet_1.id, aws_subnet.rke2_public_subnet_2.id]
+  subnets = [aws_subnet.rke2_public_subnet_1.id]
 
   listener {
     instance_port     = 6443
@@ -114,14 +114,4 @@ resource "aws_elb" "rke2_cp_elb" {
 resource "aws_elb_attachment" "rke2_initserver_lb_attachment" {
   elb      = aws_elb.rke2_cp_elb.id
   instance = aws_instance.init_server[0].id
-}
-
-resource "aws_elb_attachment" "rke2_server0_lb_attachment" {
-  elb      = aws_elb.rke2_cp_elb.id
-  instance = aws_instance.server[0].id
-}
-
-resource "aws_elb_attachment" "rke2_initserver1_lb_attachment" {
-  elb      = aws_elb.rke2_cp_elb.id
-  instance = aws_instance.server[1].id
 }

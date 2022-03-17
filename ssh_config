@@ -1,4 +1,4 @@
 Host rke2-singlenode 
-  Hostname ${init_server_ip}
-  User ${user}
+  Hostname 52.222.125.123
+  User centos
   IdentityFile ~/.ssh/rancher-laptop

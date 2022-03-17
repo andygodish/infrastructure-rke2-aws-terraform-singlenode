@@ -20,4 +20,22 @@ alias k=kubectl
 
 # retrieve kubeconfig
 
-scp rke2-singlenode:/tmp/rke2.yaml ~/.kube/config
+scp rke2-singlenode:/tmp/rke2.yaml ~/.kube/infrastructure-rke2-aws-terrraform-singlenode-config && export KUBECONFIG=~/.kube/infrastructure-rke2-aws-terrraform-singlenode-config
+
+# Enable LB service creation for nginx ingress controller
+
+```
+valuesContent: |-
+    controller:
+      service:
+        enabled: true
+```
+
+# Rancher Install
+
+helm install rancher rancher-stable/rancher \
+--namespace cattle-system \
+--set hostname=rancher.andygodish.com \
+--set ingress.tls.source=letsEncrypt \
+--set replicas=3 \
+--set letsEncrypy.email=agodish18@gmail.com --version=2.6.3

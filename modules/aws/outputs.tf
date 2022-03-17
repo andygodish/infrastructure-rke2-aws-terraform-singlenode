@@ -11,8 +11,6 @@ resource "local_file" "ssh_config" {
   content = templatefile("${path.module}/templates/ssh_config.tpl",
     {
       init_server_ip = aws_instance.init_server[0].public_ip
-      server_ip_0 = aws_instance.server[0].public_ip
-      server_ip_1 = aws_instance.server[1].public_ip
       user = var.amis[var.region][var.os].user
     }
   )

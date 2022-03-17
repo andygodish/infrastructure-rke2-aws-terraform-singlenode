@@ -66,10 +66,6 @@ variable "public_ssh_key" {
   type = string
 }
 
-variable "rke2_agent_count" {
-  type = number
-}
-
 variable "region" {
   type    = string
 }
